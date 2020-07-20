@@ -7,13 +7,30 @@ The basic overview of our design is as follows:
 
 2. The shell will then read in a line of command(s) and connector(s) from the standard input. The line read in will be in this format:
 
-							`$ ls -a && cd lab-01`
+```
+						$ ls -a && cd lab-01
+```
 							
 The `ls -a` represents the first command being executed, the `cd lab-01` represents the second command being executed and the `&&` represents the connector which connects the first command on the left and the second command on the right, which will execute the second based on what connector is used.
 
 3. The appropriate commands are then executed using `fork()`, `execvp()`, and `waitpid()`.
 
+4. The test command will be responsible for a subset of file testing thus allowing the user to run commands using the keyword `test`. The test command will first check that the path to the file exists. The test command will account for `[ ]` as well. The flags are as following: `-e`, `-f`, and `-d`. 
+
+5. The test command will display true or false to the terminal based on how the flag was evaluated.
+
+6. There will be four other connectors which deal with input and output redirection. An example is the following command:
+
+```
+		$ cat < existingInputFile | tr A-Z a-z | tee newOutputFile1 | tr a-z A-Z > newOutputFile2
+```
+The `cat` is executed on `existingInputFile`, then the `A-Z` in `existingInputFile` is changed to `a-z`, then the truncation which occurred previously is outputted to a new file called `newOutputFile1`, then the `a-`z in `newOutputFile1` is changed to `A-Z`, and finally the truncation which occurred previously is outputted to a new file called `newOutputFile2`.
+
+7. These new commands are executed using `dup2() and pipe()`.
+
 ## Release History
+`hw4 v1.2`: Released Dec 13, 2018
+
 `hw3 v.1.1` : Released Dec 3, 2018
 
 `hw3 v.1.0` : Released Nov 29, 2018.
@@ -22,6 +39,9 @@ The `ls -a` represents the first command being executed, the `cd lab-01` represe
 
 
 ## Known Bugs
+`hw4 v1.2`
+- Chaining the new connectors together with `|` is not working properly. It will create the appropriate `sPipe` object for the first argument, but then the shell stops reading everything after the first `|` and executes everything else. We believe this is because our `parse()` is neglecting anything that is still in `data` while parsing the user input. 
+
 `hw3 v.1.1`
 - Although precedence does work, using the bracket `[ ]` notation for test is somewhat working. For example, an input such `echo hello ; [ -e rshell ]` will run and execute both left and right sides, however, an input such as `[ -e rshell ] ; echo hello` will execute the left side twice and ignore the right side completely.
 
