@@ -1,7 +1,13 @@
 # Assignment 3 - RShell
+### Table of Contents
+- [Introduction](#introduction)
+- [Design](#design)
+- [Roadblocks](#roadblocks)
+- [Release History](#release-history)
+- [Known Bugs](#known-bugs)
 
 ## Introduction
-The basic overview of our design is as follows:
+The basic overview of our design is as follows.
 
 1. The shell will first print a command prompt.
 
@@ -28,6 +34,13 @@ The `cat` is executed on `existingInputFile`, then the `A-Z` in `existingInputFi
 
 7. These new commands are executed using `dup2() and pipe()`.
 
+## Design
+In order to implement this overview, we plan to use the composite pattern design. Starting with a base class called `Base`, we will run the shell through the different composite classes and leaf classes which interconnect and communicate with each other. We also have two aggregate classes called `Shell` and `Parser` which build the program and parse the user input respectively.
+![diagram pic](https://i.imgur.com/g0PTnMv.png)
+
+## Roadblocks
+Since we are working in git, we will most likely run into merge conflicts when pushing/pulling code to and from GitHub. In order to overcome them, we will be very careful when making commits with careful communication and teamwork so we can avoid them. Another issue we may encounter is the need to change our design as we start programming if we find that it is lacking. We will overcome this by being flexible and able to change our program if the need arises.
+
 ## Release History
 `hw4 v1.2`: Released Dec 13, 2018
 
@@ -36,7 +49,6 @@ The `cat` is executed on `existingInputFile`, then the `A-Z` in `existingInputFi
 `hw3 v.1.0` : Released Nov 29, 2018.
 
 `hw2` : Released Nov 21, 2018.
-
 
 ## Known Bugs
 `hw4 v1.2`
