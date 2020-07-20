@@ -1,4 +1,8 @@
 # Assignment 3 - RShell
+### Team Members
+- [Simi Purewal](https://github.com/spure02)
+- [Ashley McDaniel](https://github.com/ASHTM15)
+
 ### Table of Contents
 - [Introduction](#introduction)
 - [Design](#design)
