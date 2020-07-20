@@ -1,4 +1,4 @@
-# Assignment 3 - RShell
+# RShell
 ### Team Members
 - [Simi Purewal](https://github.com/spure02)
 - [Ashley McDaniel](https://github.com/ASHTM15)
